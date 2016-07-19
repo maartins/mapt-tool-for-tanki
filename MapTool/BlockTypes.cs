@@ -8,6 +8,10 @@ namespace MapTool {
     public enum BlockTypes {
         SolidWall = '%',
         Floor = ' ',
-        Wall = '#'
+        Wall = '#',
+        Bird = 'b',
+        Tank = 't',
+        Spawn = 's',
+        Pup = 'o'
     }
 }

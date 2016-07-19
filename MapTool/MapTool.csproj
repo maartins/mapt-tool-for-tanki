@@ -59,8 +59,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bird.cs" />
+    <Compile Include="Block.cs" />
     <Compile Include="BlockTypes.cs" />
+    <Compile Include="Floor.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="MapButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MapButton.Designer.cs">
+      <DependentUpon>MapButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapTab.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -71,9 +80,17 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Prompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolidWall.cs" />
+    <Compile Include="Spawn.cs" />
+    <Compile Include="Tank.cs" />
+    <Compile Include="Wall.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapButton.resx">
+      <DependentUpon>MapButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -83,7 +100,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Images\Thumbs.db" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,6 +132,19 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Bird01.png" />
+    <Content Include="Images\Bullet01.png" />
+    <Content Include="Images\Enemy01.png" />
+    <Content Include="Images\Floor01.png" />
+    <Content Include="Images\Nav01.png" />
+    <Content Include="Images\PwrUpSuperBullet01.png" />
+    <Content Include="Images\SuperBullet01.png" />
+    <Content Include="Images\Tank01.png" />
+    <Content Include="Images\tank_title.png" />
+    <Content Include="Images\Wall01.png" />
+    <Content Include="Images\Wall02.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
