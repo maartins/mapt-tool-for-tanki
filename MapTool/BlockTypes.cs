@@ -12,6 +12,6 @@ namespace MapTool {
         Bird = 'b',
         Tank = 't',
         Spawn = 's',
-        Pup = 'o'
+        SuperBullet = 'o'
     }
 }

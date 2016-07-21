@@ -84,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolidWall.cs" />
     <Compile Include="Spawn.cs" />
+    <Compile Include="SuperBullet.cs" />
     <Compile Include="Tank.cs" />
     <Compile Include="Wall.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -91,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MapButton.resx">
       <DependentUpon>MapButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapTab.resx">
+      <DependentUpon>MapTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MapTool {
-    public class MapTab : TabPage{
+    public class MapTab : TabPage {
+        public static bool isMouseDown = false;
 
         public string FilePath {
             get;
@@ -20,6 +21,9 @@ namespace MapTool {
         public MapTab(string title) {
             this.Text = title;
             FilePath = Directory.GetCurrentDirectory();
+
+            MouseDown += MapTab_MouseDown1;
+            MouseUp += MapTab_MouseUp1;
 
             Map newMap = new Map();
             //newMap.outputCharMap();
@@ -40,6 +44,8 @@ namespace MapTool {
                         mapButtonList.Add(new MapButton(new Bird(j * 32, i * 32)));
                     } else if (map[i, j] == (char)BlockTypes.Spawn) {
                         mapButtonList.Add(new MapButton(new Spawn(j * 32, i * 32)));
+                    } else if (map[i, j] == (char)BlockTypes.SuperBullet) {
+                        mapButtonList.Add(new MapButton(new SuperBullet(j * 32, i * 32)));
                     }
                 }
             }
@@ -47,6 +53,14 @@ namespace MapTool {
             foreach (var mb in mapButtonList) {
                 Controls.Add(mb);
             }
+        }
+
+        private void MapTab_MouseUp1(object sender, MouseEventArgs e) {
+            isMouseDown = false;
+        }
+
+        private void MapTab_MouseDown1(object sender, MouseEventArgs e) {
+            isMouseDown = true;
         }
 
         public MapTab(string title, string path) {
@@ -73,6 +87,8 @@ namespace MapTool {
                         mapButtonList.Add(new MapButton(new Bird(j * 32, i * 32)));
                     } else if (map[i, j] == (char)BlockTypes.Spawn) {
                         mapButtonList.Add(new MapButton(new Spawn(j * 32, i * 32)));
+                    } else if (map[i, j] == (char)BlockTypes.SuperBullet) {
+                        mapButtonList.Add(new MapButton(new SuperBullet(j * 32, i * 32)));
                     }
                 }
             }
@@ -83,8 +99,58 @@ namespace MapTool {
         }
 
         public void Save() {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = this.Text;
+            saveFileDialog.Filter = "txt files (*.txt)|*.txt|all files (*.*)|*.*";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
 
-            MessageBox.Show(Text + " saved.");
+            if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+                using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName)) {
+                    int i = 0;
+                    bool done = false;
+
+                    int[] linesEnds = new int[15];
+
+                    for (int j = 1; j < 16; j++) {
+                        linesEnds[j - 1] = j * 15;
+                    }
+
+                    while (!done) {
+                        if (linesEnds.Contains(i))
+                            sw.WriteLine();
+
+                        if (mapButtonList[i].Current is Wall) {
+                            sw.Write((char)BlockTypes.Wall);
+                        } else if (mapButtonList[i].Current is Floor) {
+                            sw.Write((char)BlockTypes.Floor);
+                            Console.Write((char)BlockTypes.Floor);
+                        } else if (mapButtonList[i].Current is Tank) {
+                            sw.Write((char)BlockTypes.Tank);
+                        } else if (mapButtonList[i].Current is SolidWall) {
+                            sw.Write((char)BlockTypes.SolidWall);
+                        } else if (mapButtonList[i].Current is Bird) {
+                            sw.Write((char)BlockTypes.Bird);
+                        } else if (mapButtonList[i].Current is Spawn) {
+                            sw.Write((char)BlockTypes.Spawn);
+                        } else if (mapButtonList[i].Current is SuperBullet) {
+                            sw.Write((char)BlockTypes.SuperBullet);
+                        }
+
+                        if(i == mapButtonList.Count - 1)
+                            done = true;
+                        else
+                            i++;
+                    }
+                }
+            }
+
+        }
+
+        private void InitializeComponent() {
+            this.SuspendLayout();
+            this.ResumeLayout(false);
+
         }
     }
 }

@@ -63,14 +63,11 @@ namespace MapTool {
             base.OnResizeEnd(e);
         }
 
-        private void wallButton_Click(object sender, EventArgs e) {
-            activeBlock = BlockTypes.Wall;
-        }
-
         private void openToolStripMenuItem_Click(object sender, EventArgs e) {
             openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-            openFileDialog.Filter = "TXT files|*.txt";
+            openFileDialog.Filter = "txt files|*.txt";
             openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
 
             DialogResult dr = openFileDialog.ShowDialog();
 
@@ -82,8 +79,43 @@ namespace MapTool {
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
-            MapTab mt = mainPanel.SelectedTab as MapTab;
-            mt.Save();
+            if (mainPanel.TabCount != 0) {
+                MapTab mt = mainPanel.SelectedTab as MapTab;
+                mt.Save();
+            }
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e) {
+
+        }
+
+
+        private void wallButton_Click(object sender, EventArgs e) {
+            activeBlock = BlockTypes.Wall;
+        }
+
+        private void solidWallButton_Click(object sender, EventArgs e) {
+            activeBlock = BlockTypes.SolidWall;
+        }
+
+        private void tankButton_Click(object sender, EventArgs e) {
+            activeBlock = BlockTypes.Tank;
+        }
+
+        private void superBulletButton_Click(object sender, EventArgs e) {
+            activeBlock = BlockTypes.SuperBullet;
+        }
+
+        private void floorButton_Click(object sender, EventArgs e) {
+            activeBlock = BlockTypes.Floor;
+        }
+
+        private void enemyButton_Click(object sender, EventArgs e) {
+            activeBlock = BlockTypes.Spawn;
+        }
+
+        private void birdButton_Click(object sender, EventArgs e) {
+            activeBlock = BlockTypes.Bird;
         }
     }
 }
