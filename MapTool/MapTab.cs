@@ -9,7 +9,6 @@ using System.Windows.Forms;
 
 namespace MapTool {
     public class MapTab : TabPage {
-        public static bool isMouseDown = false;
 
         public string FilePath {
             get;
@@ -20,10 +19,8 @@ namespace MapTool {
 
         public MapTab(string title) {
             this.Text = title;
+            this.Name = title;
             FilePath = Directory.GetCurrentDirectory();
-
-            MouseDown += MapTab_MouseDown1;
-            MouseUp += MapTab_MouseUp1;
 
             Map newMap = new Map();
             //newMap.outputCharMap();
@@ -55,16 +52,9 @@ namespace MapTool {
             }
         }
 
-        private void MapTab_MouseUp1(object sender, MouseEventArgs e) {
-            isMouseDown = false;
-        }
-
-        private void MapTab_MouseDown1(object sender, MouseEventArgs e) {
-            isMouseDown = true;
-        }
-
         public MapTab(string title, string path) {
             this.Text = title;
+            this.Name = title;
 
             FilePath = path;
 

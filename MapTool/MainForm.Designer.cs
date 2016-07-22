@@ -42,6 +42,7 @@
             this.tankButton = new System.Windows.Forms.Button();
             this.solidWallButton = new System.Windows.Forms.Button();
             this.wallButton = new System.Windows.Forms.Button();
+            this.closeTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolPanel.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +52,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.closeTabToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(705, 24);
@@ -177,6 +179,13 @@
             this.wallButton.UseVisualStyleBackColor = true;
             this.wallButton.Click += new System.EventHandler(this.wallButton_Click);
             // 
+            // closeTabToolStripMenuItem
+            // 
+            this.closeTabToolStripMenuItem.Name = "closeTabToolStripMenuItem";
+            this.closeTabToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.closeTabToolStripMenuItem.Text = "Close Tab";
+            this.closeTabToolStripMenuItem.Click += new System.EventHandler(this.closeTabToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,8 +199,8 @@
             this.MinimumSize = new System.Drawing.Size(670, 465);
             this.Name = "MainForm";
             this.Text = "MapTool";
-            this.Load += new System.EventHandler(this.MainForm_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseUp);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolPanel.ResumeLayout(false);
@@ -216,6 +225,7 @@
         private System.Windows.Forms.Button superBulletButton;
         private System.Windows.Forms.Button tankButton;
         private System.Windows.Forms.Button solidWallButton;
+        private System.Windows.Forms.ToolStripMenuItem closeTabToolStripMenuItem;
     }
 }
 

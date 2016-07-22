@@ -11,10 +11,11 @@ using System.Windows.Forms;
 
 namespace MapTool {
     public partial class MainForm : Form {
+        public static bool isMouseDown = false;
 
         private MapTab myTabPage;
 
-        public static BlockTypes activeBlock;
+        public static BlockTypes activeBlock = BlockTypes.Floor;     
 
         public MainForm() {
             InitializeComponent();
@@ -22,12 +23,6 @@ namespace MapTool {
                 ControlStyles.OptimizedDoubleBuffer | 
                 ControlStyles.AllPaintingInWmPaint | 
                 ControlStyles.SupportsTransparentBackColor, true);
-
-            activeBlock = BlockTypes.Floor;
-        }
-
-        private void MainForm_Load(object sender, EventArgs e) {
-            
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -37,13 +32,7 @@ namespace MapTool {
                 name = "New map";
 
             myTabPage = new MapTab(name);
-            myTabPage.Paint += new PaintEventHandler(MainForm_Paint);
             mainPanel.TabPages.Add(myTabPage);
-        }
-
-
-        private void MainForm_Paint(object sender, PaintEventArgs e) {
-
         }
 
         protected override CreateParams CreateParams {
@@ -73,7 +62,6 @@ namespace MapTool {
 
             if(dr == DialogResult.OK){
                 myTabPage = new MapTab(Path.GetFileNameWithoutExtension(openFileDialog.FileName), openFileDialog.FileName);
-                myTabPage.Paint += new PaintEventHandler(MainForm_Paint);
                 mainPanel.TabPages.Add(myTabPage);
             }
         }
@@ -84,11 +72,6 @@ namespace MapTool {
                 mt.Save();
             }
         }
-
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e) {
-
-        }
-
 
         private void wallButton_Click(object sender, EventArgs e) {
             activeBlock = BlockTypes.Wall;
@@ -116,6 +99,21 @@ namespace MapTool {
 
         private void birdButton_Click(object sender, EventArgs e) {
             activeBlock = BlockTypes.Bird;
+        }
+
+        private void MainForm_MouseDown(object sender, MouseEventArgs e) {
+            isMouseDown = true;
+        }
+
+        private void MainForm_MouseUp(object sender, MouseEventArgs e) {
+            isMouseDown = false;
+        }
+
+        private void closeTabToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (mainPanel.TabCount > 0) {
+                mainPanel.SelectedTab.Dispose();
+                mainPanel.Refresh();
+            }
         }
     }
 }

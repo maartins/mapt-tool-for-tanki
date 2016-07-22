@@ -32,8 +32,7 @@
             this.DoubleBuffered = true;
             this.Name = "MapButton";
             this.Size = new System.Drawing.Size(32, 32);
-            this.Click += new System.EventHandler(this.MapButton_Click);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapButton_MouseMove);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapButton_MouseDown);
             this.ResumeLayout(false);
 
         }

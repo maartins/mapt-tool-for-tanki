@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MapTool {
     class SuperBullet : Block{
         public SuperBullet(int x, int y)
-            : base(x, y, Properties.Resources.SuperBullet01)  {
+            : base(x, y, Properties.Resources.PwrUpSuperBullet01)  {
 
         }
     }
